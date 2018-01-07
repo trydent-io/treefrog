@@ -1,5 +1,6 @@
 package io.treefrog.javafx.component;
 
+import io.treefrog.javafx.Base;
 import io.treefrog.javafx.property.ToggleProperty;
 import javafx.scene.control.ToggleButton;
 

@@ -1,5 +1,6 @@
 package io.treefrog.javafx.component;
 
+import io.treefrog.javafx.Base;
 import io.treefrog.javafx.property.IdProperty;
 import io.treefrog.javafx.property.ParentProperty;
 import javafx.scene.Parent;
@@ -24,7 +25,7 @@ final class ParentComponentImpl<P extends Parent> implements ParentComponent, Ba
   }
 
   @Override
-  public Parent get() {
+  public Parent element() {
     return origin();
   }
 

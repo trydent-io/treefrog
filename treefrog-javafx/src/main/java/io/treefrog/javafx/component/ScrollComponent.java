@@ -1,5 +1,6 @@
 package io.treefrog.javafx.component;
 
+import io.treefrog.javafx.Base;
 import io.treefrog.javafx.event.ControlEvent;
 import io.treefrog.javafx.property.ControlProperty;
 import io.treefrog.javafx.property.IdProperty;

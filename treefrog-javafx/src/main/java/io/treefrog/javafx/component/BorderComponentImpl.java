@@ -1,5 +1,6 @@
 package io.treefrog.javafx.component;
 
+import io.treefrog.javafx.Base;
 import io.treefrog.javafx.property.BorderPosition;
 import io.treefrog.javafx.property.ParentProperty;
 import javafx.scene.layout.BorderPane;

@@ -1,5 +1,6 @@
 package io.treefrog.javafx.component;
 
+import io.treefrog.javafx.Base;
 import io.treefrog.javafx.property.InputProperty;
 import javafx.scene.Parent;
 import javafx.scene.control.TextInputControl;

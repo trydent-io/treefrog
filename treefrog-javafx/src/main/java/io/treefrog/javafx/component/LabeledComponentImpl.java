@@ -1,5 +1,6 @@
 package io.treefrog.javafx.component;
 
+import io.treefrog.javafx.Base;
 import io.treefrog.javafx.event.LabeledEvent;
 import io.treefrog.javafx.property.LabeledProperty;
 import javafx.scene.control.Labeled;

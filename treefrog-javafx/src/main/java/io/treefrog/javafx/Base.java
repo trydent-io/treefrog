@@ -1,4 +1,4 @@
-package io.treefrog.javafx.component;
+package io.treefrog.javafx;
 
 import javafx.scene.Parent;
 

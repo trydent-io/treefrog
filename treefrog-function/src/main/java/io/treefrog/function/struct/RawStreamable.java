@@ -1,4 +1,4 @@
-package io.treefrog.function;
+package io.treefrog.function.struct;
 
 import java.util.Iterator;
 import java.util.List;
