@@ -12,4 +12,9 @@ public interface Tuple {
   static <V1, V2, V3> Tuple3<V1, V2, V3> tuple(V1 v1, V2 v2, V3 v3) {
     return new Tuple3Impl<>(v1, v2, v3);
   }
+
+  @SuppressWarnings("unchecked")
+  default <T extends Tuple> T as() {
+    return (T) this;
+  }
 }

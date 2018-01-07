@@ -10,6 +10,7 @@
   <modules>
     <module>treefrog-javafx</module>
     <module>treefrog-function</module>
+    <module>treefrog-flux</module>
   </modules>
   <packaging>pom</packaging>
 
