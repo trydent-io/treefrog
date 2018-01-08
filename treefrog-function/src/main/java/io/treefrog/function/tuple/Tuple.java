@@ -1,5 +1,9 @@
 package io.treefrog.function.tuple;
 
+import io.treefrog.function.Function1;
+
+import static java.util.Objects.requireNonNull;
+
 public interface Tuple {
   static <V> Tuple1<V> tuple(V value) {
     return new Tuple1Impl<>(value);
@@ -14,7 +18,7 @@ public interface Tuple {
   }
 
   @SuppressWarnings("unchecked")
-  default <T extends Tuple> T as() {
-    return (T) this;
+  default <T extends Tuple, R> R as(Function1<T, R> asis) {
+    return requireNonNull(asis, "As must be not null").apply((T) this);
   }
 }

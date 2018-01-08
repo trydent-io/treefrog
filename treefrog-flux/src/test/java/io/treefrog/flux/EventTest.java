@@ -6,6 +6,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static com.google.common.truth.Truth.assertThat;
 import static io.treefrog.flux.Event.event;
 import static io.treefrog.flux.EventTest.TestEvents.Pointless;
@@ -19,7 +21,7 @@ class EventTest {
 
   @Test
   void shouldBeNotNull() {
-    assertThat(event(Pointless, tuple("v1"))).isNotNull();
+    assertThat(event(Pointless, "v1")).isNotNull();
   }
 
   @Test
@@ -29,9 +31,8 @@ class EventTest {
 
   @Test
   void shouldBeUppercased() {
-    abstract class MyTuple implements Tuple1<String> {}
-    event(Pointless, tuple("uppercase"))
-      .<MyTuple>apply(it -> it.then(t -> t.toUpperCase()));
-    assertThat())
+    final AtomicReference<String> ref = new AtomicReference<>();
+    event(Pointless, "uppercase").<Tuple1<String>>take(it -> ref.set(it.yield(String::toUpperCase)));
+    assertThat(ref.get()).isEqualTo("uppercase".toUpperCase());
   }
 }

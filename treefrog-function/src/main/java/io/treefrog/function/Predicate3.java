@@ -3,7 +3,7 @@ package io.treefrog.function;
 import java.util.Objects;
 
 @FunctionalInterface
-public interface Predicate3<T1, T2, T3> {
+public interface Predicate3<T1, T2, T3> extends Functional.Pre {
 
   boolean test(T1 t1, T2 t2, T3 t3);
 

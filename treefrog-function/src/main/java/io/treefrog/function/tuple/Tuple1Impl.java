@@ -36,7 +36,7 @@ final class Tuple1Impl<V> implements Tuple1<V> {
   }
 
   @Override
-  public <R> R then(Function1<? super V, R> ending) {
+  public <R> R yield(Function1<? super V, R> ending) {
     return ending.apply(value);
   }
 }

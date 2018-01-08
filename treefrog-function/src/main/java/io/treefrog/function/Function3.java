@@ -3,7 +3,7 @@ package io.treefrog.function;
 import java.util.Objects;
 import java.util.function.Function;
 
-public interface Function3<T1, T2, T3, R> {
+public interface Function3<T1, T2, T3, R> extends Functional.Fun {
   R apply(T1 t, T2 t2, T3 t3);
 
   default <V> Function3<T1, T2, T3, V> then(Function<? super R, ? extends V> after) {
