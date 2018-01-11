@@ -1,23 +1,13 @@
 package io.treefrog.flux;
 
-import io.treefrog.function.tuple.Tuple1;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
-import java.util.concurrent.atomic.AtomicReference;
-
-import static com.google.common.truth.Truth.assertThat;
-import static io.treefrog.flux.Event.event;
-import static io.treefrog.flux.EventTest.TestEvents.Pointless;
-import static io.treefrog.function.tuple.Tuple.tuple;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 @TestInstance(PER_CLASS)
-@RunWith(JUnitPlatform.class)
+//@RunWith(JUnitPlatform.class)
 class EventTest {
-  public enum TestEvents { Pointless }
+/*  public enum TestEvents { Pointless }
 
   @Test
   void shouldBeNotNull() {
@@ -34,5 +24,5 @@ class EventTest {
     final AtomicReference<String> ref = new AtomicReference<>();
     event(Pointless, "uppercase").<Tuple1<String>>take(it -> ref.set(it.yield(String::toUpperCase)));
     assertThat(ref.get()).isEqualTo("uppercase".toUpperCase());
-  }
+  }*/
 }
