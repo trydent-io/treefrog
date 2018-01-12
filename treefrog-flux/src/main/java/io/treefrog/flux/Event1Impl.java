@@ -2,7 +2,7 @@ package io.treefrog.flux;
 
 import io.treefrog.function.Function1;
 import io.treefrog.function.Functional;
-import io.treefrog.function.struct.Mapping1;
+import io.treefrog.function.map.Mapping1;
 
 final class Event1Impl<E extends Enum, V1> implements Event1<V1> {
   private final E type;
