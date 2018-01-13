@@ -5,5 +5,5 @@ import io.treefrog.function.Functional;
 
 @FunctionalInterface
 public interface Mapping1<V1> extends Functional.Map {
-  <R> Mapping1<R> map(Function1<V1, ? super R> f);
+  <R, M extends Mapping1<R>> M map(Function1<V1, R> f);
 }

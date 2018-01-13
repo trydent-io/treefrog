@@ -4,6 +4,8 @@ import io.treefrog.function.Function1;
 import io.treefrog.function.Functional;
 import io.treefrog.function.map.Mapping1;
 
+import static io.treefrog.flux.Event1.*;
+
 final class Event1Impl<E extends Enum, V1> implements Event1<V1> {
   private final E type;
   private final V1 value;
@@ -19,12 +21,14 @@ final class Event1Impl<E extends Enum, V1> implements Event1<V1> {
   }
 
   @Override
-  public <F extends Functional.Fun> F map(Function1<V1, F> f) {
+  public <R extends Functional.Map> R flatMap(Function1<V1, ? extends R> f) {
     return null;
   }
 
+
   @Override
-  public <TA, R extends Mapping1<TA>> R flatMap(Function1<V1, R> f) {
-    return null;
+  public <R, M extends Mapping1<R>> M map(Function1<V1, R> f) {
+    final Event1<R> e = Event1.event1(type, f.apply(value));
+    return e;
   }
 }

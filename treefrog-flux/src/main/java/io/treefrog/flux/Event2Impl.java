@@ -3,6 +3,7 @@ package io.treefrog.flux;
 import io.treefrog.function.Function2;
 import io.treefrog.function.Functional;
 import io.treefrog.function.map.Mapping2;
+import io.treefrog.function.tuple.Tuple2;
 
 final class Event2Impl<N extends Enum, V1, V2> implements Event2<V1, V2> {
   private final N type;
@@ -21,12 +22,12 @@ final class Event2Impl<N extends Enum, V1, V2> implements Event2<V1, V2> {
   }
 
   @Override
-  public <F extends Functional.Fun> F map(Function2<V1, V2, F> f) {
+  public <R extends Functional.Map> R flatMap(Function2<V1, V2, ? extends R> f) {
     return null;
   }
 
   @Override
-  public <T1, T2, R extends Mapping2<T1, T2>> R flatMap(Function2<V1, V2, R> f) {
+  public <R1, R2, T extends Tuple2<R1, R2>> Mapping2<R1, R2> map(Function2<V1, V2, T> f) {
     return null;
   }
 }
