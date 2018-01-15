@@ -11,6 +11,7 @@
     <module>treefrog-javafx</module>
     <module>treefrog-function</module>
     <module>treefrog-flux</module>
+    <module>treefrog-amphitrite-ui</module>
   </modules>
   <packaging>pom</packaging>
 
