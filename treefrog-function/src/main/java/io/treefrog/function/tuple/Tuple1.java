@@ -4,14 +4,36 @@ import io.treefrog.function.Consumer1;
 import io.treefrog.function.Function1;
 import io.treefrog.function.Predicate1;
 
-public interface Tuple1<V> extends Tuple {
-  
+import static io.treefrog.function.tuple.Tuple.tuple;
+import static java.util.Objects.requireNonNull;
 
-  <R> Tuple1<R> map(Function1<? super V, ? extends R> mapping);
-  <T extends Tuple> T flatMap(Function1<? super V, ? extends T> mapping);
-  Tuple1<? super V> peek(Consumer1<? super V> peeking);
+public final class Tuple1<V> implements Tuple {
+  private static final String NOT_NULL = "Functional-Interface must be not null";
 
-  boolean matches(Predicate1<? super V> condition);
+  private final V value;
 
-  <R> R yield(Function1<? super V, R> ending);
+  Tuple1(V value) {
+    this.value = value;
+  }
+
+  public <R> Tuple1<R> map(Function1<? super V, R> f) {
+    return tuple(requireNonNull(f, NOT_NULL).apply(value));
+  }
+
+  public <T extends Tuple> T flatMap(Function1<? super V, ? extends T> f) {
+    return requireNonNull(f, NOT_NULL).apply(value);
+  }
+
+  public Tuple1<V> peek(Consumer1<? super V> c) {
+    requireNonNull(c, NOT_NULL).accept(value);
+    return this;
+  }
+
+  public boolean matches(Predicate1<? super V> p) {
+    return requireNonNull(p, NOT_NULL).test(value);
+  }
+
+  public <R> R then(Function1<? super V, R> f) {
+    return requireNonNull(f, NOT_NULL).apply(value);
+  }
 }

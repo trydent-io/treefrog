@@ -1,30 +1,43 @@
 package io.treefrog.flux;
 
-import io.treefrog.function.map.FlatMapping2;
-import io.treefrog.function.map.Mapping2;
+import io.treefrog.function.Consumer2;
+import io.treefrog.function.Function2;
+import io.treefrog.function.tuple.Tuple2;
 
-import java.time.LocalDateTime;
-import java.util.Random;
+import static java.util.Objects.requireNonNull;
 
-import static io.treefrog.flux.Event1.event1;
-import static io.treefrog.flux.Event2.EventiOrdinativo.*;
-import static io.treefrog.flux.Event2.EventiOrdinativo.MandatoInviato;
+public final class Event2<E extends Enum, V1, V2> implements Event {
+  private final E type;
+  private final Tuple2<V1, V2> tuple;
 
-public interface Event2<V1, V2> extends Event, Mapping2<V1, V2>, FlatMapping2<V1, V2> {
-  static <N extends Enum, T1, T2> Event2<T1, T2> event2(N type, T1 v1, T2 v2) {
-    return new Event2Impl<>(type, v1, v2);
+  Event2(E type, Tuple2<V1, V2> tuple) {
+    this.type = type;
+    this.tuple = tuple;
   }
 
-  enum EventiOrdinativo {
-    MandatoCreato,
-    MandatoInviato,
-    MandatoScartato
+  @Override
+  public <T extends Enum> boolean is(T type) {
+    return this.type.equals(type);
   }
 
-  static void main(String[] args) {
-    event2(MandatoInviato, LocalDateTime.now(), "OPI")
-      .flatMap((when, opi) -> event1(MandatoScartato, opi + when.toString()))
-      .map(it -> new Random().nextInt())
-      .map(it -> Character.getName(it));
+  public <R1, R2> Event2<E, R1, R2> change(Function2<V1, V2, Tuple2<R1, R2>> f) {
+    return new Event2<>(type, tuple.then((t1, t2) -> requireNonNull(f, "").apply(t1, t2)));
+  }
+
+  public Event2<E, V1, V2> then(Consumer2<V1, V2> c) {
+    tuple.peek((t1, t2) -> requireNonNull(c, "Consumer must be not null").accept(t1, t2));
+    return this;
+  }
+
+  public void eventually(Consumer2<V1, V2> c) {
+    tuple.peek((t1, t2) -> requireNonNull(c, "Consumer must be not null").accept(t1, t2));
+  }
+
+  public Event2<E, V1, V2> fire() {
+    return this;
+  }
+
+  public <X extends Event> X trigger(Function2<V1, V2, X> f) {
+    return tuple.then((t1, t2) -> requireNonNull(f, "Function must be not null").apply(t1, t2));
   }
 }
