@@ -8,10 +8,10 @@
   <artifactId>treefrog</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
+    <module>treefrog-base</module>
     <module>treefrog-javafx</module>
-    <module>treefrog-function</module>
     <module>treefrog-flux</module>
-    <module>treefrog-amphitrite-ui</module>
+    <module>treefrog-hop</module>
   </modules>
   <packaging>pom</packaging>
 

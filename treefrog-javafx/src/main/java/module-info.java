@@ -1,5 +1,5 @@
-module io.treefrog.javafx {
-  requires io.treefrog.function;
+module treefrog.javafx {
+  requires treefrog.base;
 
   requires javafx.controls;
   requires javafx.swing;

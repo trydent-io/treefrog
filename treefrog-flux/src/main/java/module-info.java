@@ -1,3 +1,3 @@
-module io.treefrog.flux {
-  requires io.treefrog.function;
+module treefrog.flux {
+  requires treefrog.base;
 }
